@@ -1,0 +1,36 @@
+
+.equipe {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.person {
+    justify-content: center;
+    text-align: center;
+    min-width: 300px;
+    padding: 15px;
+}
+
+.person > .personElement {
+    padding-bottom: 20px;
+    border-bottom: 2px solid gray ;
+}
+
+.person > .personElement > .aka {
+    color: grey;
+}
+.person > .personElement > .serie{
+    font-weight: light!important;
+    color: #e2952d;
+    font-size: x-large;
+}
+
+.person > .title {
+    text-transform: uppercase;
+}
+
+.person > .subtitle {
+    padding-bottom: 20px;
+    border-bottom: 2px solid white ;
+}

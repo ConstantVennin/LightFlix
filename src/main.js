@@ -8,7 +8,7 @@ const accueil = new Accueil(),
 Router.routes = [
 	{ path: '/', page: accueil, title: 'Accueil' },
 	{ path: '/serie', page: accueil, title: 'Chercher une série' },
-	{ path: '/notre-equipe', page: accueil, title: 'Notre Equipe' },
+	{ path: '/notre-equipe', page: equipe, title: 'Notre Equipe' },
 ];
 
 Router.titleElement = document.querySelector('.pageTitle');
