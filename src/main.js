@@ -2,18 +2,21 @@ import Router from './Router';
 import PizzaList from './pages/PizzaList';
 import Component from './components/Component';
 import PizzaForm from './pages/PizzaForm';
+import Equipe from './pages/Equipe';
+
 //import $ from 'jquery';
 import Element from './lib/jqlite.js';
 import $ from './lib/jqlite.js';
 
 const pizzaList = new PizzaList([]),
 	aboutPage = new Component('section', null, 'Ce site est génial'),
-	pizzaForm = new PizzaForm();
+	pizzaForm = new PizzaForm(),
+	equipe = new Equipe();
 
 Router.routes = [
 	{ path: '/', page: pizzaList, title: 'La carte' },
 	{ path: '/a-propos', page: aboutPage, title: 'À propos' },
-	{ path: '/ajouter-pizza', page: pizzaForm, title: 'Ajouter une pizza' },
+	{ path: '/notre-equipe', page: equipe, title: 'Notre équipe' },
 ];
 Router.titleElement = $('.pageTitle');
 Router.contentElement = $('.pageContent');
