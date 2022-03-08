@@ -1,59 +1,29 @@
 import Router from './Router';
-import PizzaList from './pages/PizzaList';
-import Component from './components/Component';
-import PizzaForm from './pages/PizzaForm';
+import Accueil from './pages/Accueil';
 import Equipe from './pages/Equipe';
 
-//import $ from 'jquery';
-import Element from './lib/jqlite.js';
-import $ from './lib/jqlite.js';
-
-const pizzaList = new PizzaList([]),
-	aboutPage = new Component('section', null, 'Ce site est génial'),
-	pizzaForm = new PizzaForm(),
+const accueil = new Accueil(),
 	equipe = new Equipe();
 
 Router.routes = [
-	{ path: '/', page: pizzaList, title: 'La carte' },
-	{ path: '/a-propos', page: aboutPage, title: 'À propos' },
-	{ path: '/notre-equipe', page: equipe, title: 'Notre équipe' },
+	{ path: '/', page: accueil, title: 'Accueil' },
+	{ path: '/serie', page: accueil, title: 'Chercher une série' },
+	{ path: '/notre-equipe', page: accueil, title: 'Notre Equipe' },
 ];
-Router.titleElement = $('.pageTitle');
-Router.contentElement = $('.pageContent');
-Router.menuElement = $('.mainMenu');
 
-// History API (gestion des boutons précédent/suivant du navigateur)
+Router.titleElement = document.querySelector('.pageTitle');
+Router.contentElement = document.querySelector('.pageContent');
+Router.menuElement = document.querySelector('.mainMenu');
+
 window.onpopstate = () => {
 	Router.navigate(document.location.pathname, false);
 };
+
 // deep linking
 Router.navigate(document.location.pathname);
 
-// TP4 - B.2. Charger un fichier statique
-function displayNews(html) {
-	const $newsContainer = $('.newsContainer');
-	// injection du contenu chargé dans la page
-	$newsContainer.html(html);
-	// affichage du bandeau de news
-	$newsContainer.show();
-
-	// gestion du bouton fermer
-	const $closeButton = ('.closeButton', $newsContainer);
-	$closeButton.on('click', event => {
-		event.preventDefault();
-		$newsContainer.hide();
-	});
-}
-fetch('./news.html')
-	.then(response => response.text())
-	.then(displayNews);
-
-/*
-console.log($('.logo span').html('jQuery<em>forever</em>'));
-$('a').html('jQuery<em>forever</em>');
-*/
-
-$('.logo').on('click', event => {
+const logo = document.querySelector('.logo');
+logo.addEventListener('click', event => {
 	event.preventDefault();
 	Router.navigate('/');
 });
