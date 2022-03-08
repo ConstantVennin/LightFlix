@@ -1,0 +1,88 @@
+.pizzaForm {
+	background: white;
+	color: #121618;
+    padding: 50px;
+    border: 1px #13181919 solid;
+    outline: 20px hsl(240deg 0% 100%) solid;
+	margin: 20px;
+	margin-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.pizzaForm button[type="submit"] {
+	align-self: center;
+	margin-top: 30px;
+	border: 1px transparent solid;
+	border-radius: 3px;
+	padding: 15px 50px;
+	font-family: OpenSansCondensed;
+	font-size: 18px;
+	letter-spacing: 2px;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: pointer;
+	background-color: white;
+	transition: all .15s ease-out;
+	border-color: #131819;
+}
+.pizzaForm button[type="submit"]:hover {
+	background-color: #e2952d;
+	background-color: #131819;
+	border-color: transparent;
+	color: white;
+}
+.pizzaForm label {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	font-family: OpenSansCondensed;
+	font-size: 18px;
+	letter-spacing: 2px;
+	font-weight: lighter;
+	text-transform: uppercase;
+}
+.pizzaForm label:not(:first-of-type) {
+	margin-top: 30px;
+}
+.pizzaForm label small{
+	margin-top: 5px;
+	text-transform: none;
+	font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-style: italic;
+	font-size: 12px;
+	opacity: .6;
+	letter-spacing: 1;
+}
+.pizzaForm label code{
+	font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background-color: #13181919;
+	padding: 2px 4px;
+	border-radius: 3px;
+}
+.pizzaForm input {
+	border: 1px #eee solid;
+	border-radius: 3px;
+	background-color: #fefefe;
+	padding: 10px 20px;
+	font-size: 16px;
+	margin-top: 5px;
+}
+
+@media (min-width: 1024px) {
+	.pizzaForm {
+		width: 70%;
+		margin-bottom: 150px;
+	}
+	.pizzaForm button[type="submit"] {
+		align-self: flex-end;
+	}
+	.pizzaForm label {
+		/* width: 60%; */
+	}
+}
+input::placeholder {
+	font-weight: lighter !important;
+	color: #ddd;
+}
