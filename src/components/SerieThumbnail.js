@@ -2,15 +2,14 @@ import Component from './Component.js';
 import Img from './Img.js';
 
 export default class SerieThumbnail extends Component {
-	constructor(name, image, description, episodes) {
-		console.log('rfhzf', name);
-		super('article', { name: 'class', value: 'serieThumbnail' }, [
-			new Component('a', { name: 'href', value: image }, [
-				new Component('h1', null, name),
-				new Img(image),
-				new Component('h4', null, description),
-				new Component('p', null, `Episodes : ${episodes}`),
-			]),
-		]);
+	constructor(name, image, description) {
+		super('article', { name: 'class', value: 'serieThumbnail' }, null);
+		this.name = name;
+		this.image = image;
+		this.description = description;
+	}
+
+	render() {
+		return /*html*/ `<article class=serieThumbnail><h1>${this.name}</h1><a href=${this.image}><img src=${this.image} alt=${this.name} ></a><p>${this.description}</p></article>`;
 	}
 }
