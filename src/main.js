@@ -6,8 +6,6 @@ import PizzaForm from './pages/PizzaForm';
 import Element from './lib/jqlite.js';
 import $ from './lib/jqlite.js';
 
-$('.logo').append("<small>les pizzas c'est la vie");
-
 const pizzaList = new PizzaList([]),
 	aboutPage = new Component('section', null, 'Ce site est génial'),
 	pizzaForm = new PizzaForm();
