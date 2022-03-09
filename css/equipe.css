@@ -29,10 +29,49 @@
     font-weight: light!important;
     color: #e2952d;
     font-size: x-large;
+    text-decoration: none;
+}
+
+.person > .personElement > .serie:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 1px;
+    width: 0;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+
+.person > .personElement > .serie:hover:after {
+    width: 40%;
+    background: #e2952d;
 }
 
 .person > .title {
+    color: white!important;
     text-transform: uppercase;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+}
+
+.person > .title:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 1px;
+    width: 0;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+
+.person > .title:hover:after {
+    width: 40%;
+    background: white;
 }
 
 .person > .subtitle {

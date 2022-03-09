@@ -6,7 +6,7 @@ export default class Equipe extends Page {
             <div class="equipe">
                 <div class="person">
                     <img src="../../ressources/Cyril.png">
-                    <h1 class="title">Cyril DEMAND</h1>
+                    <a href="https://www.linkedin.com/in/cyril-demand-0a30a918b/" class="title">Cyril DEMAND</a>
                     <h4 class="personElement subtitle"><span class="aka">aka </span>Cyril</h4>
                     
                     <h3 class="personElement">Série préférée<br><a href="http://localhost:8000/serie-55138" class="serie">Arcane</a></h3>
@@ -17,7 +17,7 @@ export default class Equipe extends Page {
                 </div>
                 <div class="person">
                     <img src="../../ressources/Constant.png">
-                    <h1 class="title">Constant VENNIN</h1>
+                    <a href="https://www.linkedin.com/in/constant-vennin-0979721b7/" class="title">constant vennin</a>
                     <h4 class="personElement subtitle"><span class="aka">aka </span>Apolly</h4>
 
                     <h3 class="personElement">Série préférée<br><a href="http://localhost:8000/serie-112" class="serie">South Park</a></h3>
@@ -28,7 +28,7 @@ export default class Equipe extends Page {
                 </div>
                 <div class="person">
                     <img src="../../ressources/Noé.png">
-                    <h1 class="title">Noé DELCROIX</h1>
+                    <a href="https://www.linkedin.com/in/no%C3%A9-delcroix-0ab6411b8/" class="title">noé delcroix</a>
                     <h4 class="personElement subtitle"><span class="aka">aka </span>Nøway</h4>
                     
 
