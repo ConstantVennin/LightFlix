@@ -17,6 +17,11 @@
     border-bottom: 2px solid gray ;
 }
 
+.person > img {
+    border-radius: 100%;
+    width : 20vw;
+}
+
 .person > .personElement > .aka {
     color: grey;
 }

@@ -86,7 +86,7 @@ export default class SeriesForm extends Page {
 				})
 				.then(() => {
 					this.element.html = this.render();
-					Router.navigate('/serie');
+					Router.navigate('/');
 				});
 		} else {
 			fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
@@ -98,7 +98,7 @@ export default class SeriesForm extends Page {
 				})
 				.then(() => {
 					this.element.html = this.render();
-					Router.navigate('/serie');
+					Router.navigate('/');
 				});
 		}
 	}
