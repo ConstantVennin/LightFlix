@@ -51,6 +51,15 @@ export default class SeriesForm extends Page {
 			event.preventDefault();
 			this.submit(event);
 		});
+
+		const serieThumbnails = document.querySelectorAll('.serieThumbnail a');
+
+		serieThumbnails.forEach(a => {
+			a.addEventListener('click', event => {
+				event.preventDefault();
+				Router.navigate('/' + a.getAttribute('href').split('/')[3]);
+			});
+		});
 	}
 
 	/**
