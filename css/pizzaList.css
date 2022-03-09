@@ -1,28 +1,38 @@
-.pizzaList {
+.seriesList {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
 
 .serieThumbnail {
-	width: 20%;
+	width: 19%;
 	display: flex;
 	flex-direction: column;
+	background-color: #131618;
+	margin: 0.5%;
+	padding: 0.5%;
+}
+.serieThumbnail > a{
+	color: white;
+	text-decoration: none;
 }
 
 .pageContent > .serieThumbnail {
 	display: inline-block;
 }
 
-.serieThumbnail a {
+.serieThumbnail img {
 	display: flex;
 	flex-direction: row;
 }
 
 
 .serieThumbnail p {
-	font-size: 0.9em;
+	font-size: 0.8em;
+	text-align: justify;
 }
+
+
 /*
 .serieThumbnail:nth-child(4n) a,
 .serieThumbnail:nth-child(4n-1) a {
@@ -34,9 +44,8 @@
 	right: -20px;
 	transform: scaleX(-1) translateY(-50%);
 }
-.serieThumbnail {
-	background-color: #131618;
-}
+
+
 .serieThumbnail a {
 	background-image: linear-gradient(15deg, #121618ff 40%, #12161855 80%);
 	background-size: contain;

@@ -23,7 +23,10 @@ export default class SeriesForm extends Page {
             <label for="idc"> I don't care </label>
 
             <button type="submit">Rechercher</button>
-        </form>`;
+        </form>
+		
+		<div class="seriesList">
+		`;
 
 		if (this.children == undefined) {
 			page +=
@@ -37,7 +40,7 @@ export default class SeriesForm extends Page {
 				page += "<h1>Aucun série trouvée :'(</h1>";
 			}
 		}
-		return page;
+		return page + '</div>';
 	}
 
 	mount(element) {

@@ -13,13 +13,18 @@ export default class SerieThumbnail extends Component {
 	}
 
 	render() {
-		let page = '<article class=serieThumbnail>';
-		page += `<a href= "http://localhost:8000/serie-${this.id}"><img src=${this.image} alt=${this.name} ></a>`;
+		let page =
+			'<article class=serieThumbnail><a href= "http://localhost:8000/serie-${this.id}">';
+		if (this.image) page += `<img src=${this.image} alt=${this.name} >`;
 		page += `<h1>${this.name}</h1>`;
-		page += `${this.description}`;
-		if (this.note) page += `<h3>${this.note}</h3>`;
+		if (this.note) page += `<h4>Note : ${this.note}/10</h4>`;
+		if (this.description.length > 500) {
+			page += `<p>${this.description.substring(0, 500)} [...]</p>`;
+		} else {
+			page += `${this.description}`;
+		}
 
-		return page + '</article>';
+		return page + '</a></article>';
 	}
 
 	static formData(data) {
@@ -29,7 +34,7 @@ export default class SerieThumbnail extends Component {
 			try {
 				image = serie.image.medium;
 			} catch (error) {
-				image = '../../img/no-image-found-360x260.png';
+				image = null;
 			}
 
 			return new SerieThumbnail(
