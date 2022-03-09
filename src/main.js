@@ -6,7 +6,7 @@ const accueil = new Accueil(),
 	equipe = new Equipe();
 
 Router.routes = [
-	{ path: '/', page: accueil, title: 'Accueil' },
+	{ path: '/', page: accueil, title: 'Bienvenue sur LightFlix !' },
 	{ path: '/serie', page: accueil, title: 'Chercher une série' },
 	{ path: '/notre-equipe', page: equipe, title: 'Notre Equipe' },
 ];
