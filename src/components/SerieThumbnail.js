@@ -16,13 +16,23 @@ export default class SerieThumbnail extends Component {
 		let page =
 			'<article class=serieThumbnail><a href= "http://localhost:8000/serie-${this.id}">';
 		if (this.image) page += `<img src=${this.image} alt=${this.name} >`;
-		if (this.name) page += `<h1>${this.name}</h1>`;
-		if (this.note) page += `<h4>Note : ${this.note}/10</h4>`;
+		if (this.name) page += `<h1 class="serieText">${this.name}</h1>`;
+		if (this.note)
+			page += `<div class="progress serieText">
+						<div class="progress-bar" role="progressbar" style="width: ${
+							this.note * 10
+						}%" aria-valuenow="${
+				this.note * 10
+			}" aria-valuemin="0" aria-valuemax="100">${this.note}/10</div>
+					 </div>`;
 		if (this.description) {
 			if (this.description.length > 500) {
-				page += `<p>${this.description.substring(0, 500)} [...]</p>`;
+				page += `<p class="serieText">${this.description.substring(
+					0,
+					500
+				)} [...]</p>`;
 			} else {
-				page += `${this.description}`;
+				page += `<p class="serieText">${this.description}</p>`;
 			}
 		}
 		return page + '</a></article>';
