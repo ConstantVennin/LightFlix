@@ -7,7 +7,7 @@ const seriesForm = new SeriesForm(),
 
 Router.routes = [
 	{ path: '/', page: seriesForm, title: 'Nos Series' },
-	{ path: '/notre-equipe', page: equipe, title: 'Notre Equipe' },
+	{ path: '/lequipe', page: equipe, title: 'Notre Equipe' },
 ];
 
 Router.titleElement = document.querySelector('.pageTitle');
