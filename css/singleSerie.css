@@ -1,0 +1,84 @@
+.serieContent{
+    position:absolute;
+    z-index:200;
+    top:20%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+.serieContent > .episodesList {
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.serieContent > h1 {
+    width: 100%;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.serieContent > .episodesList > .singleEpisode {
+    background-color: #000;
+    width: 273px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    margin-bottom: 50px!important;
+}
+
+.serieContent img{
+    width: 273px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.serieContent h1{
+    color: #e2952d;
+}
+
+.serieContent > .episodesList > .singleEpisode h1 {
+    font-size: 20px;
+    margin:0px;
+}
+
+.serieContent > .episodesList > .singleEpisode h2 {
+    margin: 0px;
+    font-size: 15px;
+    color: grey;
+}
+
+.serieContent > .episodesList > .singleEpisode button {
+    width: 90%;
+    height: 30px;
+    border-radius: 15px;
+    border: #fff solid 1px;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    vertical-align: middle;
+}
+
+.serieContent > .episodesList > .singleEpisode button:hover {
+    color: #e2952d;
+    border-color: #e2952d;
+}
+
+.serieContent > .episodesList > .singleEpisode > .episodeElement {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.serieContent > .close {
+    top: 25px;
+    right: 35px;
+    position: absolute;
+    max-width: 40px;
+    filter: invert();
+    transition: 0.5s;
+}
+
+.serieContent > .close:hover {
+    transform: rotate(90deg);
+}

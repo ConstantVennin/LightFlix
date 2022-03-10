@@ -28,6 +28,18 @@
     position: relative;
 }
 
+.seriesList > .serieThumbnail h1 {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.seriesList > .serieThumbnail h2{
+    color: grey;
+    font-size: 70%;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
 .seriesList > .serieThumbnail img {
     width: 100%;
     border-radius: 10px;
@@ -53,6 +65,11 @@
     z-index:30;
 }
 
+.seriesList p, .seriesList > .serieThumbnail p{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .seriesList .progress{
     height: 30px;
     font-weight: bold;
@@ -60,6 +77,7 @@
 }
 .seriesList .progress .progress-bar{
     color: black!important;
+    height: 30px;
 }
 
 .seriesList > .serieThumbnail:hover .serieText , .seriesList > .serieThumbnail:hover .serieText p, .seriesList > .serieThumbnail:hover p{

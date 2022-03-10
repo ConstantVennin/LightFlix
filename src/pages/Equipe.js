@@ -12,7 +12,7 @@ export default class Equipe extends Page {
                     <h3 class="personElement">Série préférée<br><a href="http://localhost:8000/serie-55138" class="serie">Arcane</a></h3>
                     <h2>Implication</h2>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">33%</div>
                     </div>
                 </div>
                 <div class="person">
@@ -23,7 +23,7 @@ export default class Equipe extends Page {
                     <h3 class="personElement">Série préférée<br><a href="http://localhost:8000/serie-112" class="serie">South Park</a></h3>
                     <h2>Implication</h2>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">33%</div>
                     </div>
                 </div>
                 <div class="person">
@@ -35,7 +35,7 @@ export default class Equipe extends Page {
                     <h3 class="personElement">Série préférée<br><a href="http://localhost:8000/serie-55138" class="serie">Arcane</a></h3>
                     <h2>Implication</h2>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">33%</div>
                     </div>
                 </div>
                 
