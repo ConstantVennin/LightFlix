@@ -68,6 +68,7 @@
 .seriesList p, .seriesList > .serieThumbnail p{
     padding-left: 10px;
     padding-right: 10px;
+    color: rgb(199, 0, 0);
 }
 
 .seriesList .progress{

@@ -27,7 +27,7 @@
 }
 .person > .personElement > .serie{
     font-weight: light!important;
-    color: #e2952d;
+    color: rgb(199, 0, 0);
     font-size: x-large;
     text-decoration: none;
 }
@@ -44,7 +44,7 @@
 
 .person > .personElement > .serie:hover:after {
     width: 40%;
-    background: #e2952d;
+    background: rgb(199, 0, 0);
 }
 
 .person > .title {
