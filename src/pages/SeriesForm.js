@@ -5,6 +5,8 @@ import SerieThumbnail from '../components/SerieThumbnail';
 export default class SeriesForm extends Page {
 	seriesResult;
 
+	query;
+	name;
 	render() {
 		let page = /*html*/ `
         <form class="SeriesForm">
@@ -37,10 +39,7 @@ export default class SeriesForm extends Page {
 		<div class="seriesList">
 		`;
 
-		if (this.children == undefined) {
-			page +=
-				'<h1>Pas de recherche (faudra afficher la liste de toutes les séries dans ce cas là)</h1>';
-		} else {
+		if (this.children != undefined) {
 			if (this.children.length != 0) {
 				this.children.forEach(child => {
 					page += child.render();
@@ -49,6 +48,7 @@ export default class SeriesForm extends Page {
 				page += "<h1>Aucun série trouvée :'(</h1>";
 			}
 		}
+
 		return page + '</div>';
 	}
 
@@ -58,7 +58,7 @@ export default class SeriesForm extends Page {
 		const form = document.querySelector('form', this.element);
 		form.addEventListener('submit', event => {
 			event.preventDefault();
-			this.submit(event);
+			this.submit();
 		});
 
 		const serieThumbnails = document.querySelectorAll('.serieThumbnail a');
@@ -69,6 +69,31 @@ export default class SeriesForm extends Page {
 				Router.navigate('/' + a.getAttribute('href').split('/')[3]);
 			});
 		});
+
+		const pertinence = document.getElementById('pertinence');
+		pertinence.addEventListener('click', () => {
+			this.query = 'pertinence';
+			console.log(this.query);
+			this.submit();
+		});
+
+		const note = document.getElementById('note');
+		note.addEventListener('click', () => {
+			this.query = 'note';
+			console.log(this.query);
+			this.submit();
+		});
+
+		const date = document.getElementById('date');
+		date.addEventListener('click', () => {
+			this.query = 'date';
+			console.log(this.query);
+			this.submit();
+		});
+
+		if (this.children == undefined) {
+			this.submit();
+		}
 	}
 
 	/**
@@ -84,8 +109,13 @@ export default class SeriesForm extends Page {
 	 * puis les envoie au serveur REST
 	 */
 	submit() {
-		const name = this.getInputValue('name');
-
+		let name;
+		if (this.name != undefined) {
+			name = this.name;
+		} else {
+			this.name = this.getInputValue('name');
+			name = this.name;
+		}
 		if (name == '') {
 			const elementLoading = document.querySelector('.pageContent');
 			elementLoading.classList.add('is-loading');
@@ -120,6 +150,14 @@ export default class SeriesForm extends Page {
 			fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
 				.then(response => response.json())
 				.then(data => {
+					console.log('dans le then', this.query);
+					if (this.query == 'date') {
+						data.sort(this.compareDate);
+					}
+					data.forEach(e => {
+						console.log(e.show.premiered);
+					});
+
 					this.children = SerieThumbnail.formData(
 						data.map(result => result.show)
 					);
@@ -130,5 +168,18 @@ export default class SeriesForm extends Page {
 				})
 				.then(elementLoading.classList.remove('is-loading'));
 		}
+	}
+
+	compareDate(date1, date2) {
+		const date1split = date1.show.premiered.split('-');
+		const date2split = date2.show.premiered.split('-');
+		console.log('dans le compare');
+		for (let i = 0; i < date1split.length; i++) {
+			let value = parseInt(date1split[i]) - parseInt(date2split[i]);
+			if (value != 0) {
+				return value;
+			}
+		}
+		return 0;
 	}
 }

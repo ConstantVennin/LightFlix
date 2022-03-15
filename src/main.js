@@ -3,11 +3,13 @@ import Equipe from './pages/Equipe';
 import SeriesForm from './pages/SeriesForm';
 
 const seriesForm = new SeriesForm(),
-	equipe = new Equipe();
+	equipe = new Equipe(),
+	details = new Equipe();
 
 Router.routes = [
-	{ path: '/', page: seriesForm, title: 'Nos Series' },
-	{ path: '/lequipe', page: equipe, title: 'Notre Equipe' },
+	{ path: /\//g, page: seriesForm, title: 'Nos Series' },
+	{ path: /\/lequipe/g, page: equipe, title: 'Notre Equipe' },
+	{ path: /\/serie-[0-9]+/g, page: details, title: '' },
 ];
 
 Router.titleElement = document.querySelector('.pageTitle');
