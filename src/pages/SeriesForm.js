@@ -5,6 +5,8 @@ import SerieThumbnail from '../components/SerieThumbnail';
 export default class SeriesForm extends Page {
 	seriesResult;
 
+	query;
+	name;
 	render() {
 		let page = /*html*/ `
         <form class="SeriesForm">
@@ -26,9 +28,9 @@ export default class SeriesForm extends Page {
 			<ul id="">
 				<li><a href="#">tri par</a>
 					<ul>
-						<li><a href="#" id="pertinence">pertinence</a></li>
-						<li><a href="#" id="note">note décroissante</a></li>
-						<li><a href="#" id="date">date</a></li>
+						<li><a  id="pertinence">pertinence</a></li>
+						<li><a  id="note">note décroissante</a></li>
+						<li><a id="date">date</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -70,6 +72,27 @@ export default class SeriesForm extends Page {
 				Router.navigate('/' + a.getAttribute('href').split('/')[3]);
 			});
 		});
+
+		const pertinence = document.getElementById('pertinence');
+		pertinence.addEventListener('click', () => {
+			this.query = 'pertinence';
+			console.log(this.query);
+			this.submit();
+		});
+
+		const note = document.getElementById('note');
+		note.addEventListener('click', () => {
+			this.query = 'note';
+			console.log(this.query);
+			this.submit();
+		});
+
+		const date = document.getElementById('date');
+		date.addEventListener('click', () => {
+			this.query = 'date';
+			console.log(this.query);
+			this.submit();
+		});
 	}
 
 	/**
@@ -85,8 +108,13 @@ export default class SeriesForm extends Page {
 	 * puis les envoie au serveur REST
 	 */
 	submit() {
-		const name = this.getInputValue('name');
-
+		let name;
+		if (this.name != undefined) {
+			name = this.name;
+		} else {
+			this.name = this.getInputValue('name');
+			name = this.name;
+		}
 		if (name == '') {
 			fetch('https://api.tvmaze.com/shows')
 				.then(response => response.json())
@@ -114,6 +142,14 @@ export default class SeriesForm extends Page {
 			fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
 				.then(response => response.json())
 				.then(data => {
+					console.log('dans le then', this.query);
+					if (this.query == 'date') {
+						data.sort(this.compareDate);
+					}
+					data.forEach(e => {
+						console.log(e.show.premiered);
+					});
+
 					this.children = SerieThumbnail.formData(
 						data.map(result => result.show)
 					);
@@ -123,5 +159,18 @@ export default class SeriesForm extends Page {
 					Router.navigate('/');
 				});
 		}
+	}
+
+	compareDate(date1, date2) {
+		const date1split = date1.show.premiered.split('-');
+		const date2split = date2.show.premiered.split('-');
+		console.log('dans le compare');
+		for (let i = 0; i < date1split.length; i++) {
+			let value = parseInt(date1split[i]) - parseInt(date2split[i]);
+			if (value != 0) {
+				return value;
+			}
+		}
+		return 0;
 	}
 }
