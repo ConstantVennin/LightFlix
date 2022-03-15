@@ -13,6 +13,7 @@ export default class SeriesForm extends Page {
                 <input type="text" name="name">
             </label>	
             <br>
+			<!--
             <input type="radio" id="notYetAired" name="status" value="notYetAired">
             <label for="notYetAired"> Not yet aired </label><br>
             <input type="radio" id="airing" name="status" value="airing">
@@ -20,8 +21,17 @@ export default class SeriesForm extends Page {
             <input type="radio" id="finished" name="status" value="finished">
             <label for="finished"> Finished </label><br>
             <input type="radio" id="idc" name="status" value="idc">
-            <label for="idc"> I don't care </label>
+            <label for="idc"> I don't care </label> -->
 
+			<ul id="">
+				<li><a href="#">tri par</a>
+					<ul>
+						<li><a href="#">pertinence</a></li>
+						<li><a href="#">note décroissante</a></li>
+						<li><a href="#">date</a></li>
+					</ul>
+				</li>
+			</ul>
             <button type="submit">Rechercher</button>
         </form>
 		
