@@ -14,7 +14,11 @@ export default class SerieThumbnail extends Component {
 
 	render() {
 		let page = `<article class=serieThumbnail><a href= "http://localhost:8000/serie-${this.id}">`;
-		if (this.image) page += `<img src=${this.image} alt=${this.name} >`;
+		if (this.image) {
+			page += `<img src=${this.image} alt=${this.name} >`;
+		} else {
+			page += `<img src="../../images/not-found.png" alt=${this.name} >`;
+		}
 		if (this.name) page += `<h1 class="serieText">${this.name}`;
 		if (this.date) {
 			page += `<h2 class="serieText">${this.date}</h2></h1>`;
