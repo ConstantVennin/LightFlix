@@ -10,9 +10,8 @@ export default class SeriesForm extends Page {
 	render() {
 		let page = /*html*/ `
         <form class="SeriesForm">
-            <label>
-                Nom :
-                <input type="text" name="name">
+            <label class="searchBar">
+                <input class="searchBarInput" type="text" name="name">
             </label>	
             <br>
 			<!--
@@ -25,12 +24,12 @@ export default class SeriesForm extends Page {
             <input type="radio" id="idc" name="status" value="idc">
             <label for="idc"> I don't care </label> -->
 
-			<ul id="">
-				<li><a href="#">tri par</a>
-					<ul>
-						<li><a  id="pertinence">pertinence</a></li>
-						<li><a  id="note">note décroissante</a></li>
-						<li><a id="date">date</a></li>
+			<ul class="triSection" id="">
+				<li class="triPar"><a href="#">tri par</a>
+					<ul class="listTri">
+						<li class="triElement"><a href="#" id="pertinence">pertinence</a></li>
+						<li class="triElement"><a href="#" id="note">note décroissante</a></li>
+						<li class="triElement"><a href="#" id="date">date</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -95,7 +94,6 @@ export default class SeriesForm extends Page {
 		if (this.children == undefined) {
 			this.submit();
 		}
-
 	}
 
 	/**
@@ -119,6 +117,9 @@ export default class SeriesForm extends Page {
 			name = this.name;
 		}
 		if (name == '') {
+			const elementLoading = document.querySelector('.pageContent');
+			elementLoading.classList.add('is-loading');
+			debugger;
 			fetch('https://api.tvmaze.com/shows')
 				.then(response => response.json())
 				.then(data => {
@@ -140,8 +141,12 @@ export default class SeriesForm extends Page {
 				.then(() => {
 					this.element.html = this.render();
 					Router.navigate('/');
-				});
+				})
+				.then(elementLoading.classList.remove('is-loading'));
 		} else {
+			const elementLoading = document.querySelector('.pageContent');
+			elementLoading.classList.add('is-loading');
+			debugger;
 			fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
 				.then(response => response.json())
 				.then(data => {
@@ -160,7 +165,8 @@ export default class SeriesForm extends Page {
 				.then(() => {
 					this.element.html = this.render();
 					Router.navigate('/');
-				});
+				})
+				.then(elementLoading.classList.remove('is-loading'));
 		}
 	}
 
