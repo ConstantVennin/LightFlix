@@ -19,7 +19,8 @@
 
 .person > img {
     border-radius: 100%;
-    width : 20vw;
+    width: 300px;
+    max-width: 100%;
 }
 
 .person > .personElement > .aka {
