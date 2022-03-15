@@ -26,9 +26,9 @@ export default class SeriesForm extends Page {
 			<ul id="">
 				<li><a href="#">tri par</a>
 					<ul>
-						<li><a href="#">pertinence</a></li>
-						<li><a href="#">note décroissante</a></li>
-						<li><a href="#">date</a></li>
+						<li><a href="#" id="pertinence">pertinence</a></li>
+						<li><a href="#" id="note">note décroissante</a></li>
+						<li><a href="#" id="date">date</a></li>
 					</ul>
 				</li>
 			</ul>
