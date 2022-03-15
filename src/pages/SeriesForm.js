@@ -5,13 +5,12 @@ import SerieThumbnail from '../components/SerieThumbnail';
 export default class SeriesForm extends Page {
 	seriesResult;
 
-	query;
-	name;
+	name = '';
 	render() {
 		let page = /*html*/ `
         <form class="SeriesForm">
             <label class="searchBar">
-                <input class="searchBarInput" type="text" name="name">
+                <input class="searchBarInput" type="text" name="name" value=${this.name}>
             </label>	
             <br>
 			<!--
@@ -27,9 +26,9 @@ export default class SeriesForm extends Page {
 			<ul class="triSection" id="">
 				<li class="triPar"><a href="#">tri par</a>
 					<ul class="listTri">
-						<li class="triElement"><a href="#" id="pertinence">pertinence</a></li>
-						<li class="triElement"><a href="#" id="note">note décroissante</a></li>
-						<li class="triElement"><a href="#" id="date">date</a></li>
+						<li class="triElement"><a id="pertinence">pertinence</a></li>
+						<li class="triElement"><a id="note">note décroissante</a></li>
+						<li class="triElement"><a id="date">date</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -72,23 +71,17 @@ export default class SeriesForm extends Page {
 
 		const pertinence = document.getElementById('pertinence');
 		pertinence.addEventListener('click', () => {
-			this.query = 'pertinence';
-			console.log(this.query);
-			this.submit();
+			this.submit('pertinence');
 		});
 
 		const note = document.getElementById('note');
 		note.addEventListener('click', () => {
-			this.query = 'note';
-			console.log(this.query);
-			this.submit();
+			this.submit('note');
 		});
 
 		const date = document.getElementById('date');
 		date.addEventListener('click', () => {
-			this.query = 'date';
-			console.log(this.query);
-			this.submit();
+			this.submit('date');
 		});
 
 		if (this.children == undefined) {
@@ -108,18 +101,12 @@ export default class SeriesForm extends Page {
 	 * Récupère les infos saisies par l'utilisateur, les vérifie
 	 * puis les envoie au serveur REST
 	 */
-	submit() {
-		let name;
-		if (this.name != undefined) {
-			name = this.name;
-		} else {
-			this.name = this.getInputValue('name');
-			name = this.name;
-		}
-		if (name == '') {
+	submit(query) {
+		this.name = this.getInputValue('name');
+
+		if (this.name == '') {
 			const elementLoading = document.querySelector('.pageContent');
 			elementLoading.classList.add('is-loading');
-			debugger;
 			fetch('https://api.tvmaze.com/shows')
 				.then(response => response.json())
 				.then(data => {
@@ -146,17 +133,14 @@ export default class SeriesForm extends Page {
 		} else {
 			const elementLoading = document.querySelector('.pageContent');
 			elementLoading.classList.add('is-loading');
-			debugger;
-			fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
+			fetch(`https://api.tvmaze.com/search/shows?q=${this.name}`)
 				.then(response => response.json())
 				.then(data => {
-					console.log('dans le then', this.query);
-					if (this.query == 'date') {
+					if (query == 'date') {
 						data.sort(this.compareDate);
+					} else if (query == 'note') {
+						data.sort(this.compareNote);
 					}
-					data.forEach(e => {
-						console.log(e.show.premiered);
-					});
 
 					this.children = SerieThumbnail.formData(
 						data.map(result => result.show)
@@ -171,15 +155,31 @@ export default class SeriesForm extends Page {
 	}
 
 	compareDate(date1, date2) {
+		const d1 = date1.show.premiered,
+			d2 = date2.show.premiered;
+
+		if (d1 == undefined) return 1;
+		if (d2 == undefined) return -1;
+
 		const date1split = date1.show.premiered.split('-');
 		const date2split = date2.show.premiered.split('-');
-		console.log('dans le compare');
+
 		for (let i = 0; i < date1split.length; i++) {
-			let value = parseInt(date1split[i]) - parseInt(date2split[i]);
+			let value = parseInt(date2split[i]) - parseInt(date1split[i]);
 			if (value != 0) {
 				return value;
 			}
 		}
 		return 0;
+	}
+
+	compareNote(serie1, serie2) {
+		const noteSerie1 = serie1.show.rating.average;
+		const noteSerie2 = serie2.show.rating.average;
+
+		if (noteSerie1 == undefined) return 1;
+		if (noteSerie2 == undefined) return -1;
+
+		return parseInt(noteSerie2) - parseInt(noteSerie1);
 	}
 }

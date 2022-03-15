@@ -47,7 +47,6 @@ export default class SerieThumbnail extends Component {
 	}
 
 	static formData(data) {
-		console.log(data);
 		return data.map(serie => {
 			let image;
 			try {
