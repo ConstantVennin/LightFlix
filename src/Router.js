@@ -1,5 +1,4 @@
 import { lineBreak } from 'acorn';
-import $ from 'jquery';
 
 export default class Router {
 	static titleElement;
@@ -10,8 +9,8 @@ export default class Router {
 	 */
 	static routes = [];
 
-	// propriété statique privée
-	static #menuElement;
+	// C.3. Navigation en JS : Le menu
+	static #menuElement; // propriété statique privée
 	/**
 	 * Setter qui indique au Router la balise HTML contenant le menu de navigation.
 	 * Écoute le clic sur chaque lien et déclenche la méthode navigate.
@@ -19,13 +18,13 @@ export default class Router {
 	 */
 	static set menuElement(element) {
 		this.#menuElement = element;
-		//const links = this.#menuElement.querySelectorAll('a');
-
-		const $links = $('a', this.#menuElement);
-		$links.on('click', event => {
-			event.preventDefault();
-			this.navigate(event.currentTarget.getAttribute('href'));
-		});
+		const links = this.#menuElement.querySelectorAll('a');
+		links.forEach(link =>
+			link.addEventListener('click', event => {
+				event.preventDefault();
+				this.navigate(event.currentTarget.getAttribute('href'));
+			})
+		);
 	}
 
 	/**
@@ -34,23 +33,23 @@ export default class Router {
 	 * @param {Boolean} pushState active/désactive le pushState (ajout d'une entrée dans l'historique de navigation)
 	 */
 	static navigate(path, pushState = true) {
-		const route = this.routes.find(route => route.path === path);
+		const route = this.routes.find(route => {
+			return path.match(route.path) == path;
+		});
+
 		if (route) {
-			// rendu du titre
-			$(this.titleElement).html(`<h1>${route.title}</h1>`);
-			// rendu de la page
-			$(this.contentElement).html(route.page.render());
-			// initialisation de la page
+			this.titleElement.innerHTML = `<h1>${route.title}</h1>`;
+			this.contentElement.innerHTML = route.page.render();
+			// D.2. Préparatifs : La classe Page
 			route.page.mount?.(this.contentElement);
 
-			// Activation/désactivation des liens du menu
-			const $previousMenuLink = $('.active', this.#menuElement),
-				$newMenuLink = $(`a[href="${path}"]`, this.#menuElement);
-			$previousMenuLink?.removeClass('active'); // on retire la classe "active" du précédent menu
-			$newMenuLink?.addClass('active'); // on ajoute la classe CSS "active" sur le nouveau lien
+			// E.1. Activation du menu
+			const previousMenuLink = this.#menuElement.querySelector('.active'),
+				newMenuLink = this.#menuElement.querySelector(`a[href="${path}"]`);
+			previousMenuLink?.classList.remove('active'); // on retire la classe "active" du précédent menu
+			newMenuLink?.classList.add('active'); // on ajoute la classe CSS "active" sur le nouveau lien
 
-			// History API : ajout d'une entrée dans l'historique du navigateur
-			// pour pouvoir utiliser les boutons précédent/suivant
+			// E.2. History API
 			if (pushState) {
 				window.history.pushState(null, null, path);
 			}

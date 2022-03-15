@@ -57,7 +57,7 @@ export default class SeriesForm extends Page {
 		const form = document.querySelector('form', this.element);
 		form.addEventListener('submit', event => {
 			event.preventDefault();
-			this.submit(event);
+			this.submit();
 		});
 
 		const serieThumbnails = document.querySelectorAll('.serieThumbnail a');
