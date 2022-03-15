@@ -1,10 +1,11 @@
 import Router from './Router';
 import Equipe from './pages/Equipe';
 import SeriesForm from './pages/SeriesForm';
+import SerieDetails from './pages/SeriesDetails';
 
 const seriesForm = new SeriesForm(),
 	equipe = new Equipe(),
-	details = new Equipe();
+	details = new SerieDetails();
 
 Router.routes = [
 	{ path: /\//g, page: seriesForm, title: 'Nos Series' },

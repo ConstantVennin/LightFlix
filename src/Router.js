@@ -38,7 +38,16 @@ export default class Router {
 		});
 
 		if (route) {
-			this.titleElement.innerHTML = `<h1>${route.title}</h1>`;
+			if (route.title != '') {
+				this.titleElement.innerHTML = `<h1>${route.title}</h1>`;
+			} else {
+				this.titleElement.innerHTML = '';
+			}
+
+			if (path.includes('/serie-')) {
+				route.page.setId(path.split('-')[1]);
+			}
+
 			this.contentElement.innerHTML = route.page.render();
 			// D.2. Préparatifs : La classe Page
 			route.page.mount?.(this.contentElement);

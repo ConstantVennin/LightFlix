@@ -1,4 +1,5 @@
 import Page from './Page.js';
+import Router from '../Router.js';
 
 export default class Equipe extends Page {
 	render() {
@@ -44,5 +45,13 @@ export default class Equipe extends Page {
 
 	mount(element) {
 		super.mount(element);
+
+		const serieLinks = document.querySelectorAll('.serie');
+		serieLinks.forEach(a => {
+			a.addEventListener('click', event => {
+				event.preventDefault();
+				Router.navigate('/' + a.getAttribute('href').split('/')[3]);
+			});
+		});
 	}
 }
