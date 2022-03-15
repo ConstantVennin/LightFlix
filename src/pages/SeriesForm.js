@@ -91,6 +91,11 @@ export default class SeriesForm extends Page {
 			console.log(this.query);
 			this.submit();
 		});
+
+		if (this.children == undefined) {
+			this.submit();
+		}
+
 	}
 
 	/**
