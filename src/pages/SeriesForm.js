@@ -38,10 +38,7 @@ export default class SeriesForm extends Page {
 		<div class="seriesList">
 		`;
 
-		if (this.children == undefined) {
-			page +=
-				'<h1>Pas de recherche (faudra afficher la liste de toutes les séries dans ce cas là)</h1>';
-		} else {
+		if (this.children != undefined) {
 			if (this.children.length != 0) {
 				this.children.forEach(child => {
 					page += child.render();
@@ -50,6 +47,7 @@ export default class SeriesForm extends Page {
 				page += "<h1>Aucun série trouvée :'(</h1>";
 			}
 		}
+
 		return page + '</div>';
 	}
 
@@ -70,6 +68,10 @@ export default class SeriesForm extends Page {
 				Router.navigate('/' + a.getAttribute('href').split('/')[3]);
 			});
 		});
+
+		if (this.children == undefined) {
+			this.submit();
+		}
 	}
 
 	/**
