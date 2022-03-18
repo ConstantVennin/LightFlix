@@ -1,4 +1,5 @@
 import { lineBreak } from 'acorn';
+import NotFound from './pages/NotFound';
 
 export default class Router {
 	static titleElement;
@@ -8,6 +9,7 @@ export default class Router {
 	 * @example `Router.routes = [{ path: '/', page: pizzaList, title: 'La carte' }]`
 	 */
 	static routes = [];
+	static notFound = new NotFound();
 
 	// C.3. Navigation en JS : Le menu
 	static #menuElement; // propriété statique privée
@@ -33,7 +35,7 @@ export default class Router {
 	 * @param {Boolean} pushState active/désactive le pushState (ajout d'une entrée dans l'historique de navigation)
 	 */
 	static navigate(path, pushState = true) {
-		const route = this.routes.find(route => {
+		let route = this.routes.find(route => {
 			return path.match(route.path) == path;
 		});
 
@@ -60,8 +62,16 @@ export default class Router {
 
 			// E.2. History API
 			if (pushState) {
+				console.log(path);
 				window.history.pushState(null, null, path);
 			}
+		}
+
+		if(!route){
+			this.titleElement.innerHTML = this.notFound.render();
+			this.contentElement.innerHTML = '<p>utilisez zqsd pour jouer :)</p><style scoped >'+
+			'iframe {height:700px; width:1000px}'+
+		    '</style><iframe src=\"https://editor.p5js.org/Noway/full/M_wb4OqyF\"></iframe>';
 		}
 	}
 }
