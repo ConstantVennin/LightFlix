@@ -1,7 +1,7 @@
 import Component from './Component.js';
 import Img from './Img.js';
 
-export default class SerieThumbnail extends Component {
+export default class DetailThumbnail extends Component {
 	constructor(show) {
 		super('article', { name: 'class', value: 'serieThumbnail' }, null);
 		console.log(show);

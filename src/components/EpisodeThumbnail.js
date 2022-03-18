@@ -1,12 +1,18 @@
 import Component from './Component';
 
 export default class EpisodeThumbnail extends Component {
-	constructor(title, image, date, summary) {
+	constructor(episode) {
 		super('article', { name: 'class', value: 'episodeThumbnail' }, null);
-		this.title = title;
-		this.image = image;
-		this.date = date;
-		this.summary = summary;
+		this.title = episode.name;
+		let img;
+		try {
+			img = episode.image.medium;
+		} catch (error) {
+			img = '../../images/not-found.png';
+		}
+		this.image = img;
+		this.date = episode.airdate;
+		this.summary = episode.summary;
 	}
 
 	render() {

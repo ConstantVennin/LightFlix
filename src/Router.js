@@ -62,16 +62,16 @@ export default class Router {
 
 			// E.2. History API
 			if (pushState) {
-				console.log(path);
 				window.history.pushState(null, null, path);
 			}
 		}
 
-		if(!route){
+		if (!route) {
 			this.titleElement.innerHTML = this.notFound.render();
-			this.contentElement.innerHTML = '<p>utilisez zqsd pour jouer :)</p><style scoped >'+
-			'iframe {height:700px; width:1000px}'+
-		    '</style><iframe src=\"https://editor.p5js.org/Noway/full/M_wb4OqyF\"></iframe>';
+			this.contentElement.innerHTML =
+				'<p>utilisez zqsd pour jouer :)</p><style scoped >' +
+				'iframe {height:700px; width:1000px}' +
+				'</style><iframe src="https://editor.p5js.org/Noway/full/M_wb4OqyF"></iframe>';
 		}
 	}
 }

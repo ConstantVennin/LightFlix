@@ -112,7 +112,6 @@ export default class SeriesForm extends Page {
 			fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
 				.then(response => response.json())
 				.then(data => {
-					console.log(data);
 					this.series = data.map(serie => new SerieThumbnail(serie.show));
 				})
 				.then(elementLoading.classList.remove('is-loading'));
