@@ -3,27 +3,30 @@ import Component from './Component';
 export default class EpisodeThumbnail extends Component {
 	constructor(episode) {
 		super('article', { name: 'class', value: 'episodeThumbnail' }, null);
+
 		this.title = episode.name;
 		let img;
 		try {
 			img = episode.image.medium;
 		} catch (error) {
-			img = '../../images/not-found.png';
+			img = '../../ressources/not-found.png';
 		}
 		this.image = img;
 		this.date = episode.airdate;
 		this.summary = episode.summary;
+
+		this.season = episode.season;
+		this.number = episode.number;
 	}
 
 	render() {
 		let page = `<article class=episodeThumbnail><img class="episodeElement"`;
-		if (this.image) {
-			page += `<img src=${this.image} alt=${this.title} >`;
-		} else {
-			page += `<img src="../../images/not-found.png" alt=${this.name} >`;
-		}
+		page += `<img src=${this.image} alt=${this.title} >`;
 
 		if (this.title) page += `<h1 class="episodeElement">${this.title}</h1>`;
+		if (this.season != undefined && this.number != undefined)
+			page += `<p class="episodeElement">Saison ${this.season}, Episode ${this.number}</p>`;
+
 		if (this.date) page += `<h2 class="episodeElement">${this.date}</h2>`;
 		if (this.summary)
 			page += `<button class="episodeElement">Dévoiler le résumé</button> ${this.summary}`;

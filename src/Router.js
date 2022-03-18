@@ -1,23 +1,10 @@
-import { lineBreak } from 'acorn';
-import NotFound from './pages/NotFound';
-
 export default class Router {
 	static titleElement;
 	static contentElement;
-	/**
-	 * Tableau des routes/pages de l'application.
-	 * @example `Router.routes = [{ path: '/', page: pizzaList, title: 'La carte' }]`
-	 */
 	static routes = [];
-	static notFound = new NotFound();
 
-	// C.3. Navigation en JS : Le menu
-	static #menuElement; // propriété statique privée
-	/**
-	 * Setter qui indique au Router la balise HTML contenant le menu de navigation.
-	 * Écoute le clic sur chaque lien et déclenche la méthode navigate.
-	 * @param element Élément HTML qui contient le menu principal
-	 */
+	static #menuElement;
+
 	static set menuElement(element) {
 		this.#menuElement = element;
 		const links = this.#menuElement.querySelectorAll('a');
@@ -29,11 +16,6 @@ export default class Router {
 		);
 	}
 
-	/**
-	 * Affiche la page correspondant à `path` dans le tableau `routes`
-	 * @param {String} path URL de la page à afficher
-	 * @param {Boolean} pushState active/désactive le pushState (ajout d'une entrée dans l'historique de navigation)
-	 */
 	static navigate(path, pushState = true) {
 		let route = this.routes.find(route => {
 			return path.match(route.path) == path;
@@ -51,27 +33,30 @@ export default class Router {
 			}
 
 			this.contentElement.innerHTML = route.page.render();
-			// D.2. Préparatifs : La classe Page
 			route.page.mount?.(this.contentElement);
 
-			// E.1. Activation du menu
 			const previousMenuLink = this.#menuElement.querySelector('.active'),
 				newMenuLink = this.#menuElement.querySelector(`a[href="${path}"]`);
-			previousMenuLink?.classList.remove('active'); // on retire la classe "active" du précédent menu
-			newMenuLink?.classList.add('active'); // on ajoute la classe CSS "active" sur le nouveau lien
+			previousMenuLink?.classList.remove('active');
+			newMenuLink?.classList.add('active');
 
-			// E.2. History API
 			if (pushState) {
 				window.history.pushState(null, null, path);
 			}
 		}
 
 		if (!route) {
-			this.titleElement.innerHTML = this.notFound.render();
-			this.contentElement.innerHTML =
-				'<p>utilisez zqsd pour jouer :)</p><style scoped >' +
-				'iframe {height:700px; width:1000px}' +
-				'</style><iframe src="https://editor.p5js.org/Noway/full/M_wb4OqyF"></iframe>';
+			Router.displayErrorPage(
+				'Page introuvable !',
+				"L'url que vous avez demandé n'est pas valide"
+			);
 		}
+	}
+
+	static displayErrorPage(title, message) {
+		this.titleElement.innerHTML = `<h1>${title}</h1>`;
+		this.contentElement.innerHTML = /*html*/ `<h3>${message}</h3><p>Pour vous calmer, voici un petit jeu codé en Javascript il y a quelque temps par un des membres du groupe (quel bg)</p><style scoped >
+			iframe {height:700px; width:1000px}
+			</style><iframe src="https://editor.p5js.org/Noway/full/650cnr2WN"></iframe>`;
 	}
 }

@@ -38,15 +38,6 @@ export default class SeriesForm extends Page {
 			this.submit();
 		});
 
-		const serieThumbnails = document.querySelectorAll('.serieThumbnail a');
-
-		serieThumbnails.forEach(a => {
-			a.addEventListener('click', event => {
-				event.preventDefault();
-				Router.navigate('/' + a.getAttribute('href').split('/')[3]);
-			});
-		});
-
 		const pertinence = document.querySelector('#pertinence');
 		pertinence.addEventListener('click', () => {
 			this.submit();
@@ -130,5 +121,13 @@ export default class SeriesForm extends Page {
 				seriesList.innerHTML += element.render();
 			});
 		}
+
+		const serieThumbnails = document.querySelectorAll('.serieThumbnail a');
+		serieThumbnails.forEach(a => {
+			a.addEventListener('click', event => {
+				event.preventDefault();
+				Router.navigate('/' + a.getAttribute('href').split('/')[3]);
+			});
+		});
 	}
 }

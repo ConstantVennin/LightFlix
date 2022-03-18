@@ -2,7 +2,6 @@ import Router from './Router';
 import Equipe from './pages/Equipe';
 import SeriesForm from './pages/SeriesForm';
 import SerieDetails from './pages/SeriesDetails';
-import NotFound from './pages/NotFound';
 
 const seriesForm = new SeriesForm(),
 	equipe = new Equipe(),
