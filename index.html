@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/news.css">
 	<link rel="stylesheet" href="css/serieList.css">
-	<link rel="stylesheet" href="css/pizzaForm.css">
+	<link rel="stylesheet" href="css/serieForm.css">
 	<link rel="stylesheet" href="css/footer.css">
 	<link rel="stylesheet" href="css/progress-bar.css">
 	<link rel="stylesheet" href="css/equipe.css">
@@ -34,83 +34,31 @@
 	<section class="newsContainer" style="display:none"></section>
 	<section class="pageContainer">
 		<header class="pageTitle"></header>
-		<div class="pageContent"></div>
-<!--
-		<div class="serieContent">
-			<img class="close" src="ressources/close.svg" alt="fermer">
-			<h1>Nom de la Série</h1>
-			<div class="episodesList">
-
-			
-				<div class="singleEpisode">
-					<img class="episodeElement" src="ressources/imageTest.jpg" alt="image test">
-					
-					<h1 class="episodeElement">Titre épisode</h1>
-					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
-					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
-				</div>
-				
-				<div class="singleEpisode">
-					<img class="episodeElement" src="ressources/imageTest.jpg" alt="image test">
-					<h1 class="episodeElement">Titre épisode</h1>
-					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
-					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
-				</div>
-				<div class="singleEpisode">
-					<img class="episodeElement" src="ressources/imageTest.jpg" alt="image test">
-					<h1 class="episodeElement">Titre épisode</h1>
-					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
-					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
-				</div>
-				<div class="singleEpisode">
-					<img class="episodeElement" src="ressources/imageTest.jpg" alt="image test">
-					<h1 class="episodeElement">Titre épisode</h1>
-					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
-					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
-				</div>
-				<div class="singleEpisode">
-					<img class="episodeElement" src="ressources/imageTest.jpg" alt="image test">
-					<h1 class="episodeElement">Titre épisode</h1>
-					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
-					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
-				</div>
-				<script>
-					console.log("script");
-					const buttons = document.querySelectorAll(".buttonSpoil");
-					console.log(buttons);
-					const listSpoilParagraph = document.querySelectorAll(".spoilParagraph");
-					const arrayButtons = Array.from(buttons);
-					console.log(buttons);
-					console.log(listSpoilParagraph);
-					function getIndexById(index, list){
-						return list.findIndex(elem => elem.id == index) 
-					}
-					buttons.forEach(buttonElement => {
-						buttonElement.addEventListener('click', event => {
-							let number = getIndexById(buttonElement, arrayButtons);
-							console.log(number);
-							let spoilParagraph = listSpoilParagraph[number];
-							console.log(buttons.keys(buttonElement));
-							if(spoilParagraph.getAttribute("activeSpoil")){
-								spoilParagraph.deleteAttribute("activeSpoil");
-							}else{
-								spoilParagraph.setAttribute("activeSpoil");
-							}
-						})
-					});
-				</script>
-				
-			</div>
-		</div>
-		-->
+		<div class="pageContent"></div>	
 	</section>
 	<footer>
-		<div>Ceci est un footer</div>
+		<div class="sectionFooter">
+			<h1>Contact</h1>
+			<ul>
+				<li><em>Constant VENNIN</em><a href="mailto:constant.vennin.etu@univ-lille.fr">constant.vennin.etu@univ-lille.fr</a></li>
+				<li><em>Noé DELCROIX</em><a href="mailto:noe.delcroix.etu@univ-lille.fr">noe.delcroix.etu@univ-lille.fr</a></li>
+				<li><em>Cyril DEMAND</em><a href="mailto:cyril.demand.etu@univ-lille.fr">cyril.demand.etu@univ-lille.fr</a></li>
+			</ul>
+		</div>
+		<div class="sectionFooter">
+			<h1>Organisation</h1>
+			<ul>
+				<li><em>Etablissement</em>Université de Lille IUT A</li>
+				<li><em>Département</em>Informatique</li>
+				<li><em>Professeur</em>M.FRITSCH</li>
+			</ul>
+		</div>
+		<div class="sectionFooter">
+			<h1>Projet</h1>
+			<ul>
+				<li><em>Gitlab</em><a title="Projet Gitlab" href="https://gitlab.univ-lille.fr/noe.delcroix.etu/projet-2022-groupei-noe-delcroix-cyril-demand-constant-vennin">Projet Gitlab</a></li>
+			</ul>
+		</div>
 	</footer>
 </body>
 </html>

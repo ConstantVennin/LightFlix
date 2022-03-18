@@ -3,63 +3,62 @@ import Page from './Page.js';
 import SerieThumbnail from '../components/SerieThumbnail';
 
 export default class SeriesForm extends Page {
-	seriesResult;
+	#series;
 
 	render() {
-		let page = /*html*/ `
+		return /*html*/ `
         <form class="SeriesForm">
-            <label>
-                Nom :
-                <input type="text" name="name">
+            <label class="searchBar">
+                <input class="searchBarInput" type="text" name="name">
             </label>	
             <br>
-            <input type="radio" id="notYetAired" name="status" value="notYetAired">
-            <label for="notYetAired"> Not yet aired </label><br>
-            <input type="radio" id="airing" name="status" value="airing">
-            <label for="airing"> Airing </label><br>
-            <input type="radio" id="finished" name="status" value="finished">
-            <label for="finished"> Finished </label><br>
-            <input type="radio" id="idc" name="status" value="idc">
-            <label for="idc"> I don't care </label>
 
+			<ul class="triSection" id="">
+				<li class="triPar"><a href="#">tri par</a>
+					<ul class="listTri">
+						<li class="triElement"><a id="pertinence">pertinence</a></li>
+						<li class="triElement"><a id="note">note décroissante</a></li>
+						<li class="triElement"><a id="date">date</a></li>
+					</ul>
+				</li>
+				<a id="inverserTri">Inverser</a>
+			</ul>
             <button type="submit">Rechercher</button>
         </form>
 		
-		<div class="seriesList">
-		`;
-
-		if (this.children == undefined) {
-			page +=
-				'<h1>Pas de recherche (faudra afficher la liste de toutes les séries dans ce cas là)</h1>';
-		} else {
-			if (this.children.length != 0) {
-				this.children.forEach(child => {
-					page += child.render();
-				});
-			} else {
-				page += "<h1>Aucun série trouvée :'(</h1>";
-			}
-		}
-		return page + '</div>';
+		<div class="seriesList"></div>`;
 	}
 
 	mount(element) {
 		super.mount(element);
-		// une fois la page affichée, on détecte la soumission du formulaire
+
 		const form = document.querySelector('form', this.element);
 		form.addEventListener('submit', event => {
 			event.preventDefault();
-			this.submit(event);
+			this.submit();
 		});
 
-		const serieThumbnails = document.querySelectorAll('.serieThumbnail a');
-
-		serieThumbnails.forEach(a => {
-			a.addEventListener('click', event => {
-				event.preventDefault();
-				Router.navigate('/' + a.getAttribute('href').split('/')[3]);
-			});
+		const pertinence = document.querySelector('#pertinence');
+		pertinence.addEventListener('click', () => {
+			this.submit();
 		});
+
+		const note = document.querySelector('#note');
+		note.addEventListener('click', () => {
+			this.series = this.#series.sort(SerieThumbnail.compareNote);
+		});
+
+		const date = document.querySelector('#date');
+		date.addEventListener('click', () => {
+			this.series = this.#series.sort(SerieThumbnail.compareDate);
+		});
+
+		const inverserTri = document.querySelector('#inverserTri');
+		inverserTri.addEventListener('click', () => {
+			this.series = this.#series.reverse();
+		});
+
+		this.submit();
 	}
 
 	/**
@@ -76,6 +75,9 @@ export default class SeriesForm extends Page {
 	 */
 	submit() {
 		const name = this.getInputValue('name');
+
+		const elementLoading = document.querySelector('.pageContent');
+		elementLoading.classList.add('is-loading');
 
 		if (name == '') {
 			fetch('https://api.tvmaze.com/shows')
@@ -94,24 +96,38 @@ export default class SeriesForm extends Page {
 						alreadyPicked.push(rnd);
 					}
 
-					this.children = SerieThumbnail.formData(randomFilms);
+					this.series = randomFilms.map(serie => new SerieThumbnail(serie));
 				})
-				.then(() => {
-					this.element.html = this.render();
-					Router.navigate('/');
-				});
+				.then(elementLoading.classList.remove('is-loading'));
 		} else {
 			fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
 				.then(response => response.json())
 				.then(data => {
-					this.children = SerieThumbnail.formData(
-						data.map(result => result.show)
-					);
+					this.series = data.map(serie => new SerieThumbnail(serie.show));
 				})
-				.then(() => {
-					this.element.html = this.render();
-					Router.navigate('/');
-				});
+				.then(elementLoading.classList.remove('is-loading'));
 		}
+	}
+
+	set series(value) {
+		this.#series = value;
+
+		const seriesList = document.querySelector('.seriesList');
+		this.children = this.#series;
+
+		if (seriesList && this.children) {
+			seriesList.innerHTML = '';
+			this.children.forEach(element => {
+				seriesList.innerHTML += element.render();
+			});
+		}
+
+		const serieThumbnails = document.querySelectorAll('.serieThumbnail a');
+		serieThumbnails.forEach(a => {
+			a.addEventListener('click', event => {
+				event.preventDefault();
+				Router.navigate('/' + a.getAttribute('href').split('/')[3]);
+			});
+		});
 	}
 }

@@ -1,20 +1,27 @@
 import Component from './Component.js';
-import Img from './Img.js';
 
 export default class SerieThumbnail extends Component {
-	constructor(id, image, name, date, description, note) {
+	constructor(show) {
 		super('article', { name: 'class', value: 'serieThumbnail' }, null);
-		this.id = id;
-		this.image = image;
-		this.name = name;
-		this.date = date;
-		this.description = description;
-		this.note = note;
+		this.id = show.id;
+		let img;
+		try {
+			img = show.image.medium;
+		} catch (error) {
+			img = '../../ressources/not-found.png';
+		}
+		this.image = img;
+		this.name = show.name;
+		this.date = show.premiered;
+		this.description = show.summary;
+		this.note = show.rating.average;
 	}
 
 	render() {
 		let page = `<article class=serieThumbnail><a href= "http://localhost:8000/serie-${this.id}">`;
-		if (this.image) page += `<img src=${this.image} alt=${this.name} >`;
+
+		page += `<img src=${this.image} alt=${this.name} >`;
+
 		if (this.name) page += `<h1 class="serieText">${this.name}`;
 		if (this.date) {
 			page += `<h2 class="serieText">${this.date}</h2></h1>`;
@@ -42,24 +49,32 @@ export default class SerieThumbnail extends Component {
 		return page + '</a></article>';
 	}
 
-	static formData(data) {
-		console.log(data);
-		return data.map(serie => {
-			let image;
-			try {
-				image = serie.image.medium;
-			} catch (error) {
-				image = null;
-			}
+	static compareDate(serie1, serie2) {
+		const d1 = serie1.date,
+			d2 = serie2.date;
 
-			return new SerieThumbnail(
-				serie.id,
-				image,
-				serie.name,
-				serie.premiered,
-				serie.summary,
-				serie.rating.average
-			);
-		});
+		if (d1 == undefined) return 1;
+		if (d2 == undefined) return -1;
+
+		const date1split = d1.split('-');
+		const date2split = d2.split('-');
+
+		for (let i = 0; i < date1split.length; i++) {
+			let value = parseInt(date2split[i]) - parseInt(date1split[i]);
+			if (value != 0) {
+				return value;
+			}
+		}
+		return 0;
+	}
+
+	static compareNote(serie1, serie2) {
+		const noteSerie1 = serie1.note;
+		const noteSerie2 = serie2.note;
+
+		if (noteSerie1 == undefined) return 1;
+		if (noteSerie2 == undefined) return -1;
+
+		return parseFloat(noteSerie2) - parseFloat(noteSerie1);
 	}
 }
