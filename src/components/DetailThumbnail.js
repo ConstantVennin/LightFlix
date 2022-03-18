@@ -4,7 +4,6 @@ import Img from './Img.js';
 export default class DetailThumbnail extends Component {
 	constructor(show) {
 		super('article', { name: 'class', value: 'serieThumbnail' }, null);
-		console.log(show);
 		this.id = show.id;
 		let img;
 		try {
@@ -20,7 +19,7 @@ export default class DetailThumbnail extends Component {
 	}
 
 	render() {
-		let page = `<article class=serieThumbnail><a href= "http://localhost:8000/serie-${this.id}">`;
+		let page = `<article class=detailThumbnail>`;
 
 		page += `<img src=${this.image} alt=${this.name} >`;
 
@@ -36,8 +35,7 @@ export default class DetailThumbnail extends Component {
 							this.note * 10
 						}%" aria-valuenow="${
 				this.note * 10
-			}" aria-valuemin="0" aria-valuemax="100">${this.note}/10</div>
-					 </div>`;
+			}" aria-valuemin="0" aria-valuemax="100">${this.note}/10</div></div>`;
 		if (this.description) {
 			if (this.description.length > 500) {
 				page += `<p class="serieText">${this.description.substring(
@@ -48,7 +46,7 @@ export default class DetailThumbnail extends Component {
 				page += `<p class="serieText">${this.description}</p>`;
 			}
 		}
-		return page + '</a></article>';
+		return page + '</article>';
 	}
 
 	static compareDate(serie1, serie2) {

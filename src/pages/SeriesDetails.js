@@ -8,10 +8,6 @@ export default class SerieDetails extends Page {
 
 	#episodes;
 
-	render() {
-		return /*html*/ `<div class="serieDetail"></div><div class="episodeList"></div>`;
-	}
-
 	setId(id) {
 		this.id = id;
 	}
@@ -28,15 +24,13 @@ export default class SerieDetails extends Page {
 				return response.json();
 			})
 			.then(data => {
-				document.querySelector('.serieDetail').innerHTML = new DetailThumbnail(
+				document.querySelector('.pageContent').innerHTML = new DetailThumbnail(
 					data
 				).render();
 
-				let episodes;
 				fetch(`https://api.tvmaze.com/shows/${this.id}/episodes`)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data);
 						this.episodes = data.map(episode => new EpisodeThumbnail(episode));
 					});
 			})
@@ -46,14 +40,8 @@ export default class SerieDetails extends Page {
 	set episodes(value) {
 		this.#episodes = value;
 
-		const episodeList = document.querySelector('.episodeList');
-		this.children = this.#episodes;
-
-		if (episodeList && this.children) {
-			episodeList.innerHTML = '';
-			this.children.forEach(element => {
-				episodeList.innerHTML += element.render();
-			});
-		}
+		this.#episodes.forEach(element => {
+			document.querySelector('.pageContent').innerHTML += element.render();
+		});
 	}
 }

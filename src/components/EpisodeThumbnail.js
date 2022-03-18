@@ -16,7 +16,7 @@ export default class EpisodeThumbnail extends Component {
 	}
 
 	render() {
-		let page = `<img class="episodeElement"`;
+		let page = `<article class=episodeThumbnail><img class="episodeElement"`;
 		if (this.image) {
 			page += `<img src=${this.image} alt=${this.title} >`;
 		} else {
@@ -28,7 +28,7 @@ export default class EpisodeThumbnail extends Component {
 		if (this.summary)
 			page += `<button class="episodeElement">Dévoiler le résumé</button> ${this.summary}`;
 
-		return page;
+		return page + '</article>';
 	}
 
 	static formData(data) {
