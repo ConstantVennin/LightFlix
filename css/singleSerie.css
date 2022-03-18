@@ -1,9 +1,9 @@
 .serieContent{
-    position:absolute;
+    position:fixed;
     z-index:200;
-    top:20%;
+    top:4%;
     text-align: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     width: 100%;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .serieContent h1{
-    color: #e2952d;
+    color: rgb(199, 0, 0);
 }
 
 .serieContent > .episodesList > .singleEpisode h1 {
@@ -61,13 +61,18 @@
 }
 
 .serieContent > .episodesList > .singleEpisode button:hover {
-    color: #e2952d;
-    border-color: #e2952d;
+    color: rgb(199, 0, 0);
+    border-color: rgb(199, 0, 0);
 }
 
 .serieContent > .episodesList > .singleEpisode > .episodeElement {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.serieContent > .episodesList > .singleEpisode > img {
+    margin-top: 0px!important;
+    margin-bottom: 0px;
 }
 
 .serieContent > .close {

@@ -47,43 +47,67 @@
 					
 					<h1 class="episodeElement">Titre épisode</h1>
 					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement">Dévoiler le résumé</button>
-					<p class="episodeElement">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
+					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
+					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
 				</div>
 				
 				<div class="singleEpisode">
 					<img class="episodeElement" src="ressources/imageTest.jpg" alt="image test">
 					<h1 class="episodeElement">Titre épisode</h1>
 					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement">Dévoiler le résumé</button>
-					<p class="episodeElement">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
+					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
+					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
 				</div>
 				<div class="singleEpisode">
 					<img class="episodeElement" src="ressources/imageTest.jpg" alt="image test">
 					<h1 class="episodeElement">Titre épisode</h1>
 					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement">Dévoiler le résumé</button>
-					<p class="episodeElement">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
+					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
+					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
 				</div>
 				<div class="singleEpisode">
 					<img class="episodeElement" src="ressources/imageTest.jpg" alt="image test">
 					<h1 class="episodeElement">Titre épisode</h1>
 					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement">Dévoiler le résumé</button>
-					<p class="episodeElement">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
+					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
+					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
 				</div>
 				<div class="singleEpisode">
 					<img class="episodeElement" src="ressources/imageTest.jpg" alt="image test">
 					<h1 class="episodeElement">Titre épisode</h1>
 					<h2 class="episodeElement">2022-03-10</h2>
-					<button class="episodeElement">Dévoiler le résumé</button>
-					<p class="episodeElement">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
+					<button class="episodeElement buttonSpoil">Dévoiler le résumé</button>
+					<p class="episodeElement spoilParagraph">vbhdhvzebhvezebzevb vhebvze vhe zv  jbv  vbj eb vzb zeb vzebzev bv vze zev evz evv bzevze </p>
 				</div>
+				<script>
+					console.log("script");
+					const buttons = document.querySelectorAll(".buttonSpoil");
+					console.log(buttons);
+					const listSpoilParagraph = document.querySelectorAll(".spoilParagraph");
+					const arrayButtons = Array.from(buttons);
+					console.log(buttons);
+					console.log(listSpoilParagraph);
+					function getIndexById(index, list){
+						return list.findIndex(elem => elem.id == index) 
+					}
+					buttons.forEach(buttonElement => {
+						buttonElement.addEventListener('click', event => {
+							let number = getIndexById(buttonElement, arrayButtons);
+							console.log(number);
+							let spoilParagraph = listSpoilParagraph[number];
+							console.log(buttons.keys(buttonElement));
+							if(spoilParagraph.getAttribute("activeSpoil")){
+								spoilParagraph.deleteAttribute("activeSpoil");
+							}else{
+								spoilParagraph.setAttribute("activeSpoil");
+							}
+						})
+					});
+				</script>
 				
-
 			</div>
-		</div>-->
-		
+		</div>
+		-->
 	</section>
 	<footer>
 		<div>Ceci est un footer</div>
