@@ -46,6 +46,17 @@ export default class SerieDetails extends Page {
 						this.episodes = lastEpisodes.map(
 							episode => new EpisodeThumbnail(episode)
 						);
+
+						const buttons = document.querySelectorAll('.spoilButton');
+						const summaries = document.querySelectorAll('.summary');
+
+						for (let i = 0; i < buttons.length; i++) {
+							buttons[i].addEventListener('click', () => {
+								buttons[i].hidden = true;
+								summaries[i].hidden = false;
+							});
+						}
+
 						elementLoading.classList.remove('is-loading');
 					});
 			})
