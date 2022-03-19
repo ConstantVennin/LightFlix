@@ -29,7 +29,7 @@ export default class EpisodeThumbnail extends Component {
 
 		if (this.date) page += `<h2 class="episodeElement">${this.date}</h2>`;
 		if (this.summary)
-			page += `<button class="episodeElement">Dévoiler le résumé</button> ${this.summary}`;
+			page += `<button class="spoilButton">Dévoiler le résumé</button> <div class=summary hidden>${this.summary}<div>`;
 
 		return page + '</article>';
 	}
