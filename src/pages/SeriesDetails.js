@@ -8,6 +8,10 @@ export default class SerieDetails extends Page {
 
 	#episodes;
 
+	render() {
+		return /*html*/ `<section class=detailSection></section><section class=episodesSection></section>`;
+	}
+
 	setId(id) {
 		this.id = id;
 	}
@@ -26,9 +30,8 @@ export default class SerieDetails extends Page {
 				return response.json();
 			})
 			.then(data => {
-				document.querySelector('.pageContent').innerHTML = new DetailThumbnail(
-					data
-				).render();
+				document.querySelector('.detailSection').innerHTML =
+					new DetailThumbnail(data).render();
 
 				fetch(`https://api.tvmaze.com/shows/${this.id}/episodes`)
 					.then(response => response.json())
@@ -61,11 +64,11 @@ export default class SerieDetails extends Page {
 					});
 			})
 			.catch(() => {
+				elementLoading.classList.remove('is-loading');
 				Router.displayErrorPage(
 					'Série introuvable !',
-					"La serie que vous cherchez n'exise pas"
+					"La serie que vous cherchez n'existe pas"
 				);
-				elementLoading.classList.remove('is-loading');
 			});
 	}
 
@@ -73,7 +76,7 @@ export default class SerieDetails extends Page {
 		this.#episodes = value;
 
 		this.#episodes.forEach(element => {
-			document.querySelector('.pageContent').innerHTML += element.render();
+			document.querySelector('.episodesSection').innerHTML += element.render();
 		});
 	}
 }
