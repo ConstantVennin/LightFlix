@@ -76,12 +76,7 @@ body > footer {
 .pageContent {
 	font-size: 16px;
 }
-a {
-	color: #e2952d;
-}
-a:hover {
-	color: #edad4a;
-}
+
 .is-loading {
 	position:relative;
 	min-height: 200px;

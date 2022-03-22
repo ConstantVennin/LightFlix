@@ -9,7 +9,7 @@ export default class SerieDetails extends Page {
 	#episodes;
 
 	render() {
-		return /*html*/ `<section class=detailSection></section><section class=episodesSection></section>`;
+		return /*html*/ `<section class=detailSection></section><section class=episodesSection></section><button class="everyEpisodeButton">Afficher tous les épisodes</button>`;
 	}
 
 	setId(id) {
@@ -59,6 +59,14 @@ export default class SerieDetails extends Page {
 								summaries[i].hidden = false;
 							});
 						}
+
+						const everyEpisodeButton = document.querySelector(
+							'.everyEpisodeButton'
+						);
+						everyEpisodeButton.addEventListener('click', () => {
+							everyEpisodeButton.hidden = true;
+							summaries[i].hidden = false;
+						});
 
 						elementLoading.classList.remove('is-loading');
 					});

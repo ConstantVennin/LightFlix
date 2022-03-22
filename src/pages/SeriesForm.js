@@ -123,11 +123,15 @@ export default class SeriesForm extends Page {
 
 		const elementLoading = document.querySelector('.pageContent');
 		elementLoading.classList.add('is-loading');
+		/*
+			La classe "is-loading" ajoutée ici n'a pas l'air d'affecter l'affichage et nous ne comprenons pas pourquoi :'(
+		*/
 
 		if (name == '') {
 			fetch('https://api.tvmaze.com/shows')
 				.then(response => response.json())
 				.then(data => {
+					debugger;
 					const randomFilms = [];
 					const alreadyPicked = [];
 

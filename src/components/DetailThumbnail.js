@@ -4,8 +4,6 @@ export default class DetailThumbnail extends Component {
 	constructor(show) {
 		super('article', { name: 'class', value: 'serieThumbnail' }, null);
 
-		console.log(show);
-
 		this.id = show.id;
 		let img;
 		try {
