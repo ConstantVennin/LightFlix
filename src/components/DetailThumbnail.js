@@ -25,9 +25,9 @@ export default class DetailThumbnail extends Component {
 
 	render() {
 		let page = `<article class=detailThumbnail>`;
-
+		page += `<div class="detailBanner">`;
 		page += `<img src=${this.image} alt=${this.name} >`;
-
+		page += `<div class="writedDetails">`;
 		if (this.name) page += `<h1>${this.name}</h1>`;
 		if (this.website)
 			page += `<p>Site officiel : <a href=${this.website} target=_blank >${this.website}</a></p>`;
@@ -51,7 +51,9 @@ export default class DetailThumbnail extends Component {
 				this.note * 10
 			}" aria-valuemin="0" aria-valuemax="100">${this.note}/10</div></div>`;
 		if (this.description) {
-			page += `<p class="serieText">${this.description}</p>`;
+			page += `</div></div><p class="serieText">${this.description}</p>`;
+		} else {
+			page += `</div></div>`;
 		}
 		return page + '</article>';
 	}

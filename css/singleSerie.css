@@ -1,54 +1,115 @@
-.serieContent{
-    position:fixed;
-    z-index:200;
-    top:4%;
+.pageContent{
     text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    width: 100%;
 }
 
-.serieContent > .episodesList {
+.pageContent > .detailSection {
+    text-align: justify;
+    border-bottom: solid 2px #eee;
+    margin-bottom: 20px;
+}
+
+.pageContent > .detailSection > .detailThumbnail {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.pageContent > .detailSection > .detailThumbnail > .detailBanner {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pageContent > .detailSection > .detailThumbnail img {
+    object-fit: cover;
+    width: 300px;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.pageContent > .detailSection > .detailThumbnail .writedDetails {
+    margin: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.detailSection .writedDetails h1 {
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 25px!important;
+}
+
+.detailSection .writedDetails h3 {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px!important;
+}
+
+.detailSection .writedDetails h2 {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.detailSection .writedDetails .progress {
+    height: 25px;
+    font-weight: bold;
+    font-size: 90%;
+}
+
+/**
+*   Liste des épisodes
+*/
+
+.pageContent > .episodesSection {
     display:flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
-.serieContent > h1 {
+.pageContent > h1 {
     width: 100%;
     font-size: 30px;
     text-transform: uppercase;
 }
 
-.serieContent > .episodesList > .singleEpisode {
+.pageContent > .episodesSection > .episodeThumbnail {
+    position: relative;
     background-color: #000;
-    width: 273px;
+    width: 324px;
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 20px;
     margin-bottom: 50px!important;
 }
 
-.serieContent img{
-    width: 273px;
+.pageContent .episodeThumbnail img {
+    width: 324px;
     border-radius: 20px 20px 0px 0px;
 }
 
-.serieContent h1{
+.pageContent h1{
     color: rgb(199, 0, 0);
 }
 
-.serieContent > .episodesList > .singleEpisode h1 {
+.pageContent > .episodesSection > .episodeThumbnail h1 {
     font-size: 20px;
     margin:0px;
 }
 
-.serieContent > .episodesList > .singleEpisode h2 {
+.pageContent > .episodesSection > .episodeThumbnail h2 {
     margin: 0px;
     font-size: 15px;
     color: grey;
 }
 
-.serieContent > .episodesList > .singleEpisode button {
+.pageContent > .episodesSection > .episodeThumbnail button {
+    position: absolute;
+    transform: translateY(-140px) translateX(-50%);
     width: 90%;
     height: 30px;
     border-radius: 15px;
@@ -60,30 +121,39 @@
     vertical-align: middle;
 }
 
-.serieContent > .episodesList > .singleEpisode button:hover {
+.pageContent > .episodesSection > .episodeThumbnail button:hover {
     color: rgb(199, 0, 0);
     border-color: rgb(199, 0, 0);
 }
 
-.serieContent > .episodesList > .singleEpisode > .episodeElement {
+.pageContent > .episodesSection > .episodeThumbnail > .episodeElement {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.serieContent > .episodesList > .singleEpisode > img {
+.pageContent > .episodesSection > .episodeThumbnail > img {
     margin-top: 0px!important;
     margin-bottom: 0px;
+    height: 185px;
 }
 
-.serieContent > .close {
-    top: 25px;
-    right: 35px;
+.pageContent > .episodesSection > .episodeThumbnail .summary {
     position: absolute;
-    max-width: 40px;
-    filter: invert();
-    transition: 0.5s;
+    top: 0;
+    height: 185px;
+    width: 324px;
+    z-index: 400;
+    overflow: scroll;
+    background-color: rgba(15,15,15,0.7);
+    border-radius: 20px 20px 0px 0px;
+    scrollbar-color: #eee rgba(0,0,0,0);
 }
 
-.serieContent > .close:hover {
-    transform: rotate(90deg);
+.pageContent > .episodesSection > .episodeThumbnail .summary p {
+    margin: 20px;
+    text-align: justify;
+}
+
+.pageContent > .episodesSection > .episodeThumbnail .summary::-webkit-scrollbar {
+    display: none;
 }
