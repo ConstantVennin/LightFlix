@@ -9,7 +9,7 @@ export default class EpisodeThumbnail extends Component {
 		try {
 			img = episode.image.medium;
 		} catch (error) {
-			img = '../../ressources/not-found.png';
+			img = '../../ressources/episode-not-found.png';
 		}
 		this.image = img;
 		this.date = episode.airdate;
